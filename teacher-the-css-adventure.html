@@ -1,0 +1,1139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, maximum-scale=3.0" />
+  <title>🌟 Teacher Theo's Super Fun CSS Adventure Land! 🎨✨</title>
+  <style>
+    /* Mobile-First Responsive Design */
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 50%, #a8edea 100%);
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      text-align: center;
+      padding: 10px;
+      min-height: 100vh;
+      margin: 0;
+      animation: background-dance 10s infinite;
+    }
+
+    /* Mobile optimizations */
+    @media (max-width: 768px) {
+      body {
+        padding: 5px;
+      }
+    }
+
+    @keyframes background-dance {
+      0% { background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 50%, #a8edea 100%); }
+      25% { background: linear-gradient(135deg, #a8edea 0%, #ff9a9e 50%, #ffd93d 100%); }
+      50% { background: linear-gradient(135deg, #ffd93d 0%, #4ecdc4 50%, #ff6b6b 100%); }
+      75% { background: linear-gradient(135deg, #4ecdc4 0%, #ff6b6b 50%, #a8edea 100%); }
+      100% { background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 50%, #a8edea 100%); }
+    }
+
+    h1 {
+      color: #ff4757;
+      font-size: 56px;
+      text-shadow: 4px 4px 12px rgba(0,0,0,0.4);
+      margin-bottom: 15px;
+      animation: rainbow-bounce 3s infinite;
+      text-decoration: underline;
+      text-decoration-color: #4ecdc4;
+    }
+
+    /* Mobile heading adjustments */
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 36px;
+        margin-bottom: 10px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      h1 {
+        font-size: 28px;
+        line-height: 1.2;
+      }
+    }
+
+    @keyframes rainbow-bounce {
+      0%, 100% {transform: translateY(0) scale(1); color: #ff4757;}
+      25% {transform: translateY(-20px) scale(1.05); color: #ff6b6b;}
+      50% {transform: translateY(-15px) scale(1.1); color: #4ecdc4;}
+      75% {transform: translateY(-20px) scale(1.05); color: #ffd93d;}
+    }
+
+    .welcome-message {
+      color: #2c2c54;
+      font-size: 26px;
+      font-weight: bold;
+      margin-bottom: 30px;
+      background: rgba(255,255,255,0.9);
+      padding: 25px;
+      border-radius: 25px;
+      max-width: 700px;
+      margin: 0 auto 30px auto;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+      border: 4px solid #ff6b6b;
+      animation: welcome-glow 4s infinite;
+    }
+
+    /* Mobile welcome message */
+    @media (max-width: 768px) {
+      .welcome-message {
+        font-size: 20px;
+        padding: 20px;
+        margin: 0 auto 20px auto;
+        border: 3px solid #ff6b6b;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .welcome-message {
+        font-size: 16px;
+        padding: 15px;
+        border-radius: 15px;
+      }
+    }
+
+    @keyframes welcome-glow {
+      0%, 100% { box-shadow: 0 8px 20px rgba(255, 107, 107, 0.3); }
+      50% { box-shadow: 0 8px 30px rgba(78, 205, 196, 0.5); }
+    }
+
+    .teacher-badge {
+      display: inline-block;
+      background: linear-gradient(45deg, #ff6b6b, #ffd93d);
+      color: white;
+      padding: 15px 30px;
+      border-radius: 50px;
+      font-size: 24px;
+      font-weight: bold;
+      margin: 20px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+      animation: badge-spin 6s infinite;
+      border: 4px solid white;
+    }
+
+    /* Mobile teacher badge */
+    @media (max-width: 768px) {
+      .teacher-badge {
+        font-size: 18px;
+        padding: 12px 25px;
+        margin: 15px;
+        border: 3px solid white;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .teacher-badge {
+        font-size: 16px;
+        padding: 10px 20px;
+        margin: 10px;
+      }
+    }
+
+    @keyframes badge-spin {
+      0%, 90%, 100% { transform: rotate(0deg) scale(1); }
+      45% { transform: rotate(360deg) scale(1.1); }
+    }
+
+    .fun-tip {
+      background: linear-gradient(45deg, #ffd93d, #ff6b6b);
+      color: white;
+      padding: 20px;
+      border-radius: 25px;
+      margin: 20px 0;
+      font-size: 20px;
+      font-weight: bold;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+      animation: tip-wiggle 3s infinite;
+    }
+
+    @keyframes tip-wiggle {
+      0%, 100% { transform: rotate(0deg); }
+      25% { transform: rotate(2deg); }
+      75% { transform: rotate(-2deg); }
+    }
+
+    .code-editor {
+      width: 100%;
+      height: 320px;
+      margin: 20px 0;
+      background: linear-gradient(145deg, #2c3e50, #34495e);
+      color: #ecf0f1;
+      font-family: 'Consolas', 'Monaco', monospace;
+      font-size: 18px;
+      border: none;
+      padding: 30px;
+      border-radius: 20px;
+      resize: vertical;
+      box-shadow: inset 0 4px 10px rgba(0,0,0,0.4), 0 8px 20px rgba(0,0,0,0.3);
+      line-height: 1.7;
+      border: 4px solid #4ecdc4;
+      transition: all 0.3s ease;
+    }
+
+    /* Mobile code editor */
+    @media (max-width: 768px) {
+      .code-editor {
+        height: 250px;
+        font-size: 14px;
+        padding: 20px;
+        border: 3px solid #4ecdc4;
+        line-height: 1.5;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .code-editor {
+        height: 200px;
+        font-size: 12px;
+        padding: 15px;
+        border: 2px solid #4ecdc4;
+        border-radius: 15px;
+      }
+    }
+
+    .code-editor:focus {
+      transform: scale(1.02);
+      border-color: #ff6b6b;
+      box-shadow: inset 0 4px 10px rgba(0,0,0,0.4), 0 12px 30px rgba(255, 107, 107, 0.4);
+    }
+
+    .apply-btn {
+      font-size: 22px;
+      padding: 18px 40px;
+      background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #ffd93d);
+      background-size: 300% 300%;
+      color: white;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      margin: 20px;
+      font-weight: bold;
+      text-transform: uppercase;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+      transition: all 0.3s ease;
+      font-family: 'Comic Sans MS', cursive;
+      animation: button-rainbow 3s infinite;
+      border: 3px solid white;
+      touch-action: manipulation; /* Better mobile tap experience */
+    }
+
+    /* Mobile buttons */
+    @media (max-width: 768px) {
+      .apply-btn {
+        font-size: 18px;
+        padding: 15px 30px;
+        margin: 15px;
+        border: 2px solid white;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .apply-btn {
+        font-size: 16px;
+        padding: 12px 25px;
+        margin: 10px;
+        width: calc(100% - 20px);
+        max-width: 300px;
+      }
+    }
+
+    @keyframes button-rainbow {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .apply-btn:hover {
+      transform: translateY(-8px) scale(1.1) rotate(5deg);
+      box-shadow: 0 20px 35px rgba(0,0,0,0.4);
+    }
+
+    .preview-area {
+      display: flex;
+      gap: 30px;
+      justify-content: center;
+      flex-wrap: wrap;
+      padding: 30px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      border-radius: 25px;
+      margin: 25px 0;
+      min-height: 280px;
+      align-items: center;
+      box-shadow: 0 12px 30px rgba(0,0,0,0.3);
+      border: 4px solid #ffd93d;
+    }
+
+    /* Mobile preview areas */
+    @media (max-width: 768px) {
+      .preview-area {
+        gap: 20px;
+        padding: 20px;
+        min-height: 200px;
+        border: 3px solid #ffd93d;
+        margin: 20px 0;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .preview-area {
+        gap: 15px;
+        padding: 15px;
+        min-height: 150px;
+        border: 2px solid #ffd93d;
+        border-radius: 15px;
+        margin: 15px 0;
+      }
+    }
+
+    .magic-card {
+      background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+      color: white;
+      width: 160px;
+      height: 200px;
+      border-radius: 25px;
+      font-size: 24px;
+      font-weight: bold;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.4s ease;
+      border: 5px solid #fff;
+      cursor: pointer;
+      animation: card-float 4s infinite ease-in-out;
+      touch-action: manipulation; /* Better mobile interaction */
+    }
+
+    /* Mobile cards */
+    @media (max-width: 768px) {
+      .magic-card {
+        width: 120px;
+        height: 150px;
+        font-size: 20px;
+        border: 3px solid #fff;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .magic-card {
+        width: 100px;
+        height: 120px;
+        font-size: 18px;
+        border: 2px solid #fff;
+        border-radius: 15px;
+      }
+    }
+
+    @keyframes card-float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+    }
+
+    .magic-card:hover {
+      transform: translateY(-20px) rotate(10deg) scale(1.1);
+      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.6);
+      animation: none;
+    }
+
+    .example-colors {
+      display: flex;
+      gap: 15px;
+      justify-content: center;
+      margin: 20px 0;
+      flex-wrap: wrap;
+      animation: colors-bounce 2s infinite ease-in-out;
+    }
+
+    /* Mobile color samples */
+    @media (max-width: 768px) {
+      .example-colors {
+        gap: 10px;
+        margin: 15px 0;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .example-colors {
+        gap: 8px;
+        margin: 10px 0;
+      }
+    }
+
+    @keyframes colors-bounce {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+
+    .color-sample {
+      width: 70px;
+      height: 50px;
+      border-radius: 15px;
+      border: 3px solid white;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.4);
+      cursor: pointer;
+      transition: all 0.3s ease;
+      position: relative;
+      animation: sample-wiggle 3s infinite ease-in-out;
+      touch-action: manipulation; /* Better mobile tap */
+    }
+
+    /* Mobile color samples */
+    @media (max-width: 768px) {
+      .color-sample {
+        width: 50px;
+        height: 35px;
+        border: 2px solid white;
+        border-radius: 10px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .color-sample {
+        width: 40px;
+        height: 30px;
+        border: 2px solid white;
+        border-radius: 8px;
+      }
+    }
+
+    @keyframes sample-wiggle {
+      0%, 100% { transform: rotate(0deg); }
+      25% { transform: rotate(3deg); }
+      75% { transform: rotate(-3deg); }
+    }
+
+    .color-sample:hover {
+      transform: scale(1.2) rotate(10deg);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.5);
+    }
+
+    .color-sample::after {
+      content: attr(title);
+      position: absolute;
+      bottom: -30px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 14px;
+      font-weight: bold;
+      color: #2c2c54;
+      background: rgba(255,255,255,0.9);
+      padding: 5px 10px;
+      border-radius: 10px;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .color-sample:hover::after {
+      opacity: 1;
+    }
+
+    .progress-bar {
+      display: flex;
+      justify-content: center;
+      gap: 25px;
+      margin: 35px 0;
+    }
+
+    /* Mobile progress bar */
+    @media (max-width: 768px) {
+      .progress-bar {
+        gap: 15px;
+        margin: 25px 0;
+        flex-wrap: wrap;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .progress-bar {
+        gap: 10px;
+        margin: 20px 0;
+      }
+    }
+
+    .progress-step {
+      width: 100px;
+      height: 80px;
+      border-radius: 15px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      font-weight: bold;
+      color: white;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+      animation: step-pulse 2s infinite ease-in-out;
+      border: 3px solid white;
+    }
+
+    /* Mobile progress steps */
+    @media (max-width: 768px) {
+      .progress-step {
+        width: 80px;
+        height: 60px;
+        font-size: 14px;
+        border: 2px solid white;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .progress-step {
+        width: 70px;
+        height: 50px;
+        font-size: 12px;
+        border-radius: 10px;
+      }
+    }
+
+    .step-1 { 
+      background: linear-gradient(45deg, #ff6b6b, #ffd93d); 
+      animation-delay: 0s;
+    }
+    .step-2 { 
+      background: linear-gradient(45deg, #4ecdc4, #44a08d); 
+      animation-delay: 0.5s;
+    }
+    .step-3 { 
+      background: linear-gradient(45deg, #a8edea, #fed6e3); 
+      animation-delay: 1s;
+    }
+    .step-4 { 
+      background: linear-gradient(45deg, #9b59b6, #e74c3c); 
+      animation-delay: 1.5s;
+    }
+
+    @keyframes step-pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.1); }
+    }
+
+    footer {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: 35px;
+      margin-top: 50px;
+      border-radius: 30px;
+      text-align: left;
+      max-width: 950px;
+      margin-left: auto;
+      margin-right: auto;
+      box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+      border: 4px solid #ffd93d;
+    }
+
+    .tip-section {
+      background: rgba(255,255,255,0.15);
+      border-radius: 20px;
+      padding: 20px;
+      margin: 20px 0;
+      border-left: 8px solid #4ecdc4;
+      transition: transform 0.3s ease;
+    }
+
+    .tip-section:hover {
+      transform: translateX(10px);
+    }
+
+    .fun-challenge {
+      background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+      border-radius: 25px;
+      padding: 25px;
+      margin: 25px 0;
+      text-align: center;
+      font-size: 20px;
+      animation: challenge-pulse 3s infinite;
+      border: 4px solid white;
+    }
+
+    @keyframes challenge-pulse {
+      0%, 100% { transform: scale(1); box-shadow: 0 0 20px rgba(255, 107, 107, 0.5); }
+      50% { transform: scale(1.03); box-shadow: 0 0 30px rgba(78, 205, 196, 0.7); }
+    }
+
+    .emoji-rain {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    .emoji {
+      position: absolute;
+      font-size: 30px;
+      animation: fall 8s linear infinite;
+    }
+
+    @keyframes fall {
+      from {
+        transform: translateY(-100px) rotate(0deg);
+        opacity: 1;
+      }
+      to {
+        transform: translateY(100vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
+
+    /* Mobile-specific optimizations */
+    @media (max-width: 768px) {
+      /* Reduce emoji rain on mobile for performance */
+      .emoji {
+        font-size: 24px;
+        animation-duration: 10s;
+      }
+      
+      /* Better touch targets */
+      h2 {
+        font-size: 20px;
+        margin: 15px 0;
+      }
+      
+      /* Improve readability */
+      .fun-tip {
+        font-size: 16px;
+        padding: 15px;
+        margin: 15px 0;
+      }
+      
+      /* Reduce animations for better performance */
+      .magic-card:hover {
+        transform: translateY(-10px) rotate(5deg) scale(1.05);
+      }
+    }
+
+    @media (max-width: 480px) {
+      /* Further mobile optimizations */
+      .emoji {
+        font-size: 20px;
+        animation-duration: 12s;
+      }
+      
+      h2 {
+        font-size: 18px;
+        margin: 10px 0;
+      }
+      
+      .fun-tip {
+        font-size: 14px;
+        padding: 12px;
+        margin: 10px 0;
+        border-radius: 15px;
+      }
+      
+      /* Simpler hover effects for mobile */
+      .magic-card:hover {
+        transform: scale(1.05);
+      }
+      
+      /* Hide some animations to improve performance */
+      .badge-spin {
+        animation: none !important;
+      }
+    }
+
+    /* Touch-friendly hover alternatives */
+    @media (hover: none) {
+      .color-sample:active {
+        transform: scale(1.1);
+      }
+      
+      .apply-btn:active {
+        transform: scale(0.95);
+      }
+      
+      .magic-card:active {
+        transform: scale(1.05);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="emoji-rain" id="emojiRain"></div>
+
+  <h1>🌟 Teacher Theo's CSS Magic Kingdom! 🌟</h1>
+  
+  <div class="teacher-badge">👑 Master Teacher The 👑</div>
+
+  <div class="welcome-message">
+    🎉 Welcome to Teacher Theo's incredible 3-hour CSS adventure! 🎉<br>
+    Get ready to create amazing, colorful, and magical websites! Let's make some CSS magic happen! ✨
+  </div>
+
+  <div class="progress-bar">
+    <div class="progress-step step-1">🎨 Colors</div>
+    <div class="progress-step step-2">📦 Layout</div>
+    <div class="progress-step step-3">✨ Effects</div>
+    <div class="progress-step step-4">🔷 Shapes</div>
+  </div>
+
+  <div class="fun-tip">
+    🌈 <strong>Step 1: Color Magic!</strong> Click the color samples below and watch the magic happen! 🌈
+  </div>
+
+  <h2>🎨 Teacher The's Color Studio - Paint Your Dreams! 🎨</h2>
+  
+  <div class="example-colors">
+    <div class="color-sample" style="background: hotpink;" title="hotpink" onclick="insertColor('hotpink')"></div>
+    <div class="color-sample" style="background: lime;" title="lime" onclick="insertColor('lime')"></div>
+    <div class="color-sample" style="background: gold;" title="gold" onclick="insertColor('gold')"></div>
+    <div class="color-sample" style="background: purple;" title="purple" onclick="insertColor('purple')"></div>
+    <div class="color-sample" style="background: orange;" title="orange" onclick="insertColor('orange')"></div>
+    <div class="color-sample" style="background: turquoise;" title="turquoise" onclick="insertColor('turquoise')"></div>
+    <div class="color-sample" style="background: red;" title="red" onclick="insertColor('red')"></div>
+    <div class="color-sample" style="background: blue;" title="blue" onclick="insertColor('blue')"></div>
+    <div class="color-sample" style="background: coral;" title="coral" onclick="insertColor('coral')"></div>
+    <div class="color-sample" style="background: violet;" title="violet" onclick="insertColor('violet')"></div>
+  </div>
+  
+  <textarea class="code-editor" id="color-editor">
+/* 🎨 Teacher Theo's Color Magic! Click colors above or type new ones! */
+.color-card {
+  background: hotpink; /* Try: lime, gold, purple, orange! */
+  color: white; /* Try: black, yellow, purple! */
+  border: 5px solid gold; /* Try: red, blue, turquoise! */
+  font-size: 28px; /* Make text bigger or smaller! */
+}
+
+/* ✨ Hover magic - what happens when you touch the card? */
+.color-card:hover {
+  background: lime; /* Changes color when you hover! */
+  color: black; /* Text color changes too! */
+  border: 8px solid purple; /* Border gets thicker and changes color! */
+  transform: scale(1.1); /* Card gets bigger! */
+}
+
+/* 🌈 SUPER CHALLENGES! Try these amazing combinations: */
+/* background: linear-gradient(45deg, red, blue); - Rainbow background! */
+/* border: 10px dashed orange; - Dashed orange border! */
+/* color: yellow; text-shadow: 2px 2px black; - Glowing text! */</textarea>
+
+  <button class="apply-btn" onclick="applyColorStyles()">🎨 Cast Color Spell! 🎨</button>
+  
+  <div id="color-preview" class="preview-area">
+    <div class="magic-card color-card">🎨</div>
+    <div class="magic-card color-card">🌈</div>
+    <div class="magic-card color-card">✨</div>
+  </div>
+
+  <div class="fun-tip">
+    📦 <strong>Step 2: Layout Magic!</strong> Arrange your cards like a true wizard! 📦
+  </div>
+  
+  <h2>📦 Teacher Theo's Layout Laboratory - Organize Like a Pro! 📦</h2>
+  <textarea class="code-editor" id="flexbox-editor">
+/* 📦 FLEXBOX SUPERPOWERS! Arrange cards like organizing magical toys! */
+#flexbox-preview {
+  display: flex; /* Magic lineup power! Try: block, grid */
+  gap: 50px; /* Space between cards! Try: 10px, 100px, 20px */
+  justify-content: center; /* Where to put them! Try: flex-start, flex-end, space-around */
+  flex-direction: row; /* Direction! Try: column, row-reverse */
+  flex-wrap: wrap; /* Can they wrap? Try: nowrap */
+  padding: 40px; /* Space around everything! */
+  align-items: center; /* Vertical alignment! Try: flex-start, flex-end */
+}
+
+/* 🚀 LAYOUT CHALLENGES! Try these amazing arrangements: */
+/* flex-direction: column; - Stack cards up and down like a tower! */
+/* justify-content: space-between; - Spread cards to corners! */
+/* gap: 5px; - Cards become best friends (super close)! */
+/* gap: 200px; - Cards need personal space (far apart)! */</textarea>
+
+  <button class="apply-btn" onclick="applyFlexboxStyles()">📦 Organize Magic! 📦</button>
+  
+  <div id="flexbox-preview" class="preview-area">
+    <div class="magic-card flexbox-card">📦</div>
+    <div class="magic-card flexbox-card">🎯</div>
+    <div class="magic-card flexbox-card">🎪</div>
+    <div class="magic-card flexbox-card">🎭</div>
+  </div>
+
+  <div class="fun-tip">
+    ✨ <strong>Step 3: Effect Magic!</strong> Make your cards dance, glow, and spin! ✨
+  </div>
+
+  <h2>✨ Teacher The's Effect Workshop - Make Things Dance! ✨</h2>
+  <textarea class="code-editor" id="effects-editor">
+/* ✨ MAGICAL EFFECTS! Make your cards dance, spin, and glow like stars! */
+.effects-card {
+  box-shadow: 10px 10px 30px rgba(255, 105, 180, 0.5); /* Pink magical glow! */
+  border-radius: 25px; /* Round corners! Try: 50px, 5px, 0px */
+  transition: all 0.5s ease; /* Smooth magic animation! */
+  transform: scale(1) rotate(0deg); /* Starting position */
+  filter: brightness(1); /* Brightness level! Try: 1.2, 0.8 */
+}
+
+.effects-card:hover {
+  transform: translateY(-25px) rotate(15deg) scale(1.2); /* Float, spin, and grow! */
+  box-shadow: 15px 15px 50px rgba(255, 20, 147, 0.8); /* Super bright glow! */
+  border-radius: 40px; /* Even rounder when touched! */
+  filter: brightness(1.3) hue-rotate(45deg); /* Color shift magic! */
+}
+
+/* 🎭 AMAZING TRICKS! Try these spectacular effects: */
+/* transform: rotate(90deg); - Quarter spin! */
+/* transform: scale(2); - Double size! */
+/* box-shadow: 0px 20px 50px blue; - Blue magical aura! */
+/* border-radius: 50%; - Perfect circle transformation! */
+/* filter: hue-rotate(180deg); - Rainbow color shift! */</textarea>
+
+  <button class="apply-btn" onclick="applyEffectsStyles()">✨ Cast Effect Spell! ✨</button>
+  
+  <div id="effects-preview" class="preview-area">
+    <div class="magic-card effects-card">🌟</div>
+    <div class="magic-card effects-card">⚡</div>
+    <div class="magic-card effects-card">🎭</div>
+  </div>
+
+  <div class="fun-tip">
+    🔷 <strong>Step 4: Shape Magic!</strong> Transform squares into circles and create wild shapes! 🔷
+  </div>
+
+  <h2>🔷 Teacher Theo's Shape Laboratory - Geometric Wizardry! 🔷</h2>
+  <textarea class="code-editor" id="shapes-editor">
+/* 🔷 SHAPE TRANSFORMATION MAGIC! Turn squares into any shape you imagine! */
+.shapes-card {
+  border-radius: 50%; /* Perfect circle! Try: 0px, 25px, 75px */
+  border: 10px dotted purple; /* Magical dotted border! Try: solid, dashed, double */
+  width: 150px; /* Card width! Try: 100px, 250px, 200px */
+  height: 150px; /* Card height! Same as width for circles! */
+  background: linear-gradient(45deg, yellow, orange, pink); /* Rainbow inside! */
+  outline: 5px solid gold; /* Extra border magic! */
+}
+
+.shapes-card:hover {
+  border-radius: 20px; /* Transform to rounded square! */
+  border: 20px solid gold; /* Thick golden border! */
+  transform: rotate(45deg) scale(1.1); /* Spin into diamond shape! */
+  width: 180px; /* Grows bigger! */
+  height: 180px;
+  background: linear-gradient(45deg, lime, turquoise, purple); /* Color change! */
+}
+
+/* 🎪 SHAPE CHALLENGES! Try these incredible transformations: */
+/* border-radius: 50px 10px; - Weird wobbly blob! */
+/* border-radius: 100px 0px 100px 0px; - Leaf shape! */
+/* border: 30px ridge rainbow; - 3D rainbow border magic! */
+/* width: 300px; height: 150px; - Rectangle transformation! */
+/* clip-path: polygon(50% 0%, 0% 100%, 100% 100%); - Triangle! */</textarea>
+
+  <button class="apply-btn" onclick="applyShapesStyles()">🔷 Shape Transformation! 🔷</button>
+  
+  <div id="shapes-preview" class="preview-area">
+    <div class="magic-card shapes-card">🔷</div>
+    <div class="magic-card shapes-card">⭐</div>
+    <div class="magic-card shapes-card">🎪</div>
+  </div>
+
+  <footer>
+    <h3>🎓 Teacher Theo's Ultimate CSS Mastery Guide! 🎓</h3>
+    
+    <div class="tip-section">
+      <strong>🌈 COLOR WIZARDRY:</strong><br>
+      • Basic Magic: red, blue, green, yellow, purple, orange, pink<br>
+      • Advanced Spells: hotpink, lime, gold, turquoise, violet, coral, crimson<br>
+      • Rainbow Magic: background: linear-gradient(45deg, red, orange, yellow, green, blue, purple);<br>
+      • 🏆 Challenge: Create a sunset gradient with 5 different colors!
+    </div>
+    
+    <div class="tip-section">
+      <strong>📦 LAYOUT SUPERPOWERS:</strong><br>
+      • Direction Control: flex-direction: row (→), column (↓), row-reverse (←), column-reverse (↑)<br>
+      • Position Magic: justify-content: center, flex-start, flex-end, space-between, space-around<br>
+      • Spacing Spells: gap: 10px (close friends), 50px (normal), 150px (distant cousins)<br>
+      • 🏆 Challenge: Make a perfect grid of cards in 2 rows and 2 columns!
+    </div>
+    
+    <div class="tip-section">
+      <strong>✨ EFFECT ENCHANTMENTS:</strong><br>
+      • Growth Magic: transform: scale(1.5) - becomes bigger!, scale(0.5) - becomes smaller!<br>
+      • Rotation Spells: transform: rotate(45deg) - slight turn, rotate(180deg) - upside down!<br>
+      • Glow Effects: box-shadow: 0px 10px 30px red - red magical aura!<br>
+      • 🏆 Challenge: Make a card that glows rainbow colors and spins 720 degrees!
+    </div>
+    
+    <div class="tip-section">
+      <strong>🔷 SHAPE TRANSFORMATION:</strong><br>
+      • Circle Magic: border-radius: 50% (perfect circle), 25% (rounded square)<br>
+      • Border Styles: solid (normal), dashed (- - -), dotted (• • •), double (== ==)<br>
+      • Size Control: width/height: 100px (small), 200px (medium), 300px (large)<br>
+      • 🏆 Challenge: Create a heart shape using only CSS border-radius!
+    </div>
+    
+    <div class="fun-challenge">
+      <strong>🏆 TEACHER THEO'S ULTIMATE CHALLENGE! 🏆</strong><br>
+      Can you create a masterpiece that combines EVERYTHING?<br>
+      • Rainbow gradient background 🌈<br>
+      • Card that transforms from blue square to pink spinning circle ✨<br>
+      • Glowing effects that change colors 💫<br>
+      • Layout that switches from row to column 📦<br>
+      You are the CSS wizard of Teacher The's kingdom! 🧙‍♀️👑
+    </div>
+  </footer>
+
+  <script>
+    // Create emoji rain effect with mobile optimization
+    function createEmojiRain() {
+      const emojis = ['🎨', '🌈', '✨', '⭐', '🎭', '🔷', '🎪', '🌟', '⚡', '💫'];
+      const emojiRain = document.getElementById('emojiRain');
+      
+      // Reduce emoji frequency on mobile devices
+      const isMobile = window.innerWidth <= 768;
+      const interval = isMobile ? 6000 : 3000;
+      const maxEmojis = isMobile ? 3 : 5;
+      
+      setInterval(() => {
+        // Limit number of emojis on screen for mobile performance
+        if (emojiRain.children.length < maxEmojis) {
+          const emoji = document.createElement('div');
+          emoji.className = 'emoji';
+          emoji.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+          emoji.style.left = Math.random() * 100 + '%';
+          emoji.style.animationDuration = (Math.random() * 3 + 5) + 's';
+          emojiRain.appendChild(emoji);
+          
+          setTimeout(() => {
+            if (emoji.parentNode) {
+              emoji.remove();
+            }
+          }, 8000);
+        }
+      }, interval);
+    }
+
+    // Start emoji rain
+    createEmojiRain();
+
+    // Base styles for all cards
+    const baseStyles = `
+      .magic-card {
+        background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+        color: white;
+        width: 160px;
+        height: 200px;
+        border-radius: 25px;
+        font-size: 28px;
+        font-weight: bold;
+        box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.4s ease;
+        border: 5px solid #fff;
+        cursor: pointer;
+        animation: card-float 4s infinite ease-in-out;
+      }
+      
+      /* Default preview layouts */
+      #color-preview, #effects-preview, #shapes-preview {
+        display: flex;
+        gap: 30px;
+        justify-content: center;
+        flex-wrap: wrap;
+        padding: 30px;
+      }
+
+      #flexbox-preview {
+        display: flex;
+        gap: 50px;
+        justify-content: center;
+        flex-direction: row;
+        flex-wrap: wrap;
+        padding: 40px;
+        align-items: center;
+      }
+    `;
+
+    // Color insertion function with mobile optimization
+    function insertColor(color) {
+      const editor = document.getElementById('color-editor');
+      const cursorPos = editor.selectionStart;
+      const textBefore = editor.value.substring(0, cursorPos);
+      const textAfter = editor.value.substring(cursorPos);
+      
+      editor.value = textBefore + color + textAfter;
+      editor.focus();
+      editor.setSelectionRange(cursorPos + color.length, cursorPos + color.length);
+      
+      // Apply changes immediately
+      applyColorStyles();
+      
+      // Add mobile haptic feedback if available
+      if (navigator.vibrate) {
+        navigator.vibrate(50);
+      }
+    }
+
+    // Style application functions
+    function applyColorStyles() {
+      const colorContent = document.getElementById('color-editor').value;
+      updateStyle('color-style', baseStyles + colorContent);
+      showSuccessMessage('🎨 Color magic applied! 🎨');
+    }
+
+    function applyFlexboxStyles() {
+      const flexboxContent = document.getElementById('flexbox-editor').value;
+      updateStyle('flexbox-style', baseStyles + flexboxContent);
+      showSuccessMessage('📦 Layout magic applied! 📦');
+    }
+
+    function applyEffectsStyles() {
+      const effectsContent = document.getElementById('effects-editor').value;
+      updateStyle('effects-style', baseStyles + effectsContent);
+      showSuccessMessage('✨ Effect magic applied! ✨');
+    }
+
+    function applyShapesStyles() {
+      const shapesContent = document.getElementById('shapes-editor').value;
+      updateStyle('shapes-style', baseStyles + shapesContent);
+      showSuccessMessage('🔷 Shape magic applied! 🔷');
+    }
+
+    // Helper function to update styles
+    function updateStyle(styleId, content) {
+      let styleElement = document.getElementById(styleId);
+      if (!styleElement) {
+        styleElement = document.createElement('style');
+        styleElement.id = styleId;
+        document.head.appendChild(styleElement);
+      }
+      styleElement.innerHTML = content;
+    }
+
+    // Success message function with mobile optimization
+    function showSuccessMessage(message) {
+      const existingMessage = document.querySelector('.success-message');
+      if (existingMessage) existingMessage.remove();
+      
+      const successDiv = document.createElement('div');
+      successDiv.className = 'success-message';
+      successDiv.textContent = message;
+      
+      // Mobile-responsive positioning
+      const isMobile = window.innerWidth <= 768;
+      const positionStyle = isMobile 
+        ? 'position: fixed; top: 10px; left: 50%; transform: translateX(-50%);'
+        : 'position: fixed; top: 20px; right: 20px;';
+      
+      successDiv.style.cssText = `
+        ${positionStyle}
+        background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+        color: white;
+        padding: ${isMobile ? '12px 20px' : '15px 25px'};
+        border-radius: 25px;
+        font-weight: bold;
+        z-index: 1000;
+        animation: slideIn 0.5s ease;
+        border: 3px solid white;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+        font-size: ${isMobile ? '14px' : '16px'};
+        max-width: ${isMobile ? '90%' : 'auto'};
+        text-align: center;
+      `;
+      
+      document.body.appendChild(successDiv);
+      
+      // Mobile haptic feedback
+      if (navigator.vibrate) {
+        navigator.vibrate([50, 50, 50]);
+      }
+      
+      setTimeout(() => {
+        if (successDiv.parentNode) {
+          successDiv.remove();
+        }
+      }, 3000);
+    }
+
+    // Add slide-in animation
+    const slideInStyle = document.createElement('style');
+    slideInStyle.textContent = `
+      @keyframes slideIn {
+        from { transform: translateX(100%); opacity: 0; }
+        to { transform: translateX(0); opacity: 1; }
+      }
+    `;
+    document.head.appendChild(slideInStyle);
+
+    // Apply base styles when page loads
+    document.addEventListener('DOMContentLoaded', function() {
+      updateStyle('base-style', baseStyles);
+      
+      // Add sparkle effect to buttons
+      document.querySelectorAll('.apply-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+          this.style.animation = 'none';
+          setTimeout(() => {
+            this.style.animation = 'button-rainbow 3s infinite';
+          }, 100);
+        });
+      });
+      
+      // Mobile-specific optimizations
+      if (window.innerWidth <= 768) {
+        // Add mobile class to body
+        document.body.classList.add('mobile');
+        
+        // Optimize for mobile performance
+        document.querySelectorAll('.magic-card').forEach(card => {
+          card.addEventListener('touchstart', function() {
+            this.style.transform = 'scale(1.05)';
+          });
+          
+          card.addEventListener('touchend', function() {
+            setTimeout(() => {
+              this.style.transform = '';
+            }, 150);
+          });
+        });
+      }
+      
+      // Handle orientation changes
+      window.addEventListener('orientationchange', function() {
+        setTimeout(() => {
+          // Restart emoji rain with new settings
+          const emojiRain = document.getElementById('emojiRain');
+          emojiRain.innerHTML = '';
+          createEmojiRain();
+        }, 500);
+      });
+      
+      // Add swipe gesture support for mobile
+      let startX, startY, distX, distY;
+      const threshold = 150;
+      
+      document.addEventListener('touchstart', function(e) {
+        const touchobj = e.changedTouches[0];
+        startX = touchobj.pageX;
+        startY = touchobj.pageY;
+      });
+      
+      document.addEventListener('touchend', function(e) {
+        const touchobj = e.changedTouches[0];
+        distX = touchobj.pageX - startX;
+        distY = touchobj.pageY - startY;
+        
+        // Horizontal swipe gestures
+        if (Math.abs(distX) >= threshold && Math.abs(distY) <= 100) {
+          if (distX > 0) {
+            // Swipe right - show encouraging message
+            showSuccessMessage('🎉 Keep going! You\'re doing great! 🎉');
+          } else {
+            // Swipe left - show tip
+            showSuccessMessage('💡 Try changing colors and effects! 💡');
+          }
+        }
+      });
+    });
+  </script>
+</body>
+</html>

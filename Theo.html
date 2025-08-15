@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>🎨 CSS Playground for Kids</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, maximum-scale=3.0" />
+  <style id="liveStyle">
+    :root {
+      --bg: #f0f8ff;
+      --text: #000;
+      --card: #fff8dc;
+    }
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: Comic Sans MS, cursive;
+      text-align: center;
+      padding: 10px;
+      margin: 0;
+      min-width: 0;
+    }
+    .section {
+      background-color: var(--card);
+      border: 2px dashed #888;
+      border-radius: 15px;
+      padding: 20px;
+      margin: 20px auto;
+      width: 98vw;
+      max-width: 900px;
+      box-shadow: 2px 2px 8px #aaa;
+      min-width: 0;
+    }
+    textarea {
+      width: 98vw;
+      max-width: 860px;
+      min-width: 0;
+      height: 120px;
+      font-size: 17px;
+      font-family: monospace;
+      margin-top: 10px;
+      padding: 10px;
+      border-radius: 10px;
+      border: 2px solid #ccc;
+      box-sizing: border-box;
+      resize: vertical;
+      word-break: break-all;
+    }
+    button {
+      margin: 10px;
+      font-size: 20px;
+      padding: 16px 32px;
+      background-color: #4caf50;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      width: 60%;
+      max-width: 400px;
+      box-sizing: border-box;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+      transition: background 0.2s, transform 0.1s;
+    }
+    button.run-btn::before {
+      content: '▶️ ';
+      font-size: 22px;
+      vertical-align: middle;
+    }
+    button:hover, button:active {
+      background-color: #388e3c;
+      transform: scale(1.04);
+    }
+    button:hover, button:active {
+      background-color: #388e3c;
+    }
+    h1 {
+      font-size: clamp(24px, 7vw, 48px);
+      margin: 10px 0 18px 0;
+      word-break: break-word;
+    }
+    h2 {
+      font-size: clamp(18px, 5vw, 32px);
+      margin: 8px 0 12px 0;
+      word-break: break-word;
+    }
+    p, .note, .tip {
+      font-size: clamp(13px, 4vw, 22px);
+      margin: 6px 0;
+      word-break: break-word;
+    }
+    .character, .sunny, .dance, .rainbow, .box, .hidden, .flex-puzzle, .flex-parade, .grid-garden, .grid-party {
+      margin: 8px auto;
+      padding: 12px;
+      font-size: 5vw;
+      border: 2px solid black;
+      width: fit-content;
+      border-radius: 10px;
+      min-width: 0;
+      box-sizing: border-box;
+      max-width: 95vw;
+      overflow-x: auto;
+    }
+    .flex-puzzle, .flex-parade {
+      gap: 6px;
+      flex-wrap: wrap;
+      justify-content: center;
+      min-width: 0;
+    }
+    .flex-puzzle div, .flex-parade div {
+      padding: 10px;
+      width: 40px;
+      font-size: 7vw;
+      min-width: 0;
+    }
+    .grid-garden, .grid-party {
+      width: 100%;
+      max-width: 350px;
+      min-width: 0;
+      margin: 0 auto;
+      grid-gap: 8px;
+    }
+    .grid-garden div, .grid-party div {
+      font-size: 7vw;
+      padding: 10px;
+      min-width: 0;
+    }
+    @media (max-width: 600px) {
+      html, body, .section, h1, h2, h3, p, div, span, textarea, button {
+        font-family: 'Comic Sans MS', 'Comic Sans', 'Arial Rounded MT Bold', Arial, Verdana, Geneva, Tahoma, sans-serif !important;
+        font-style: normal !important;
+        box-sizing: border-box !important;
+      }
+      body {
+        padding: 0;
+        margin: 0;
+        min-width: 0;
+        background-color: var(--bg);
+        color: var(--text);
+        text-align: center;
+      }
+      .section {
+        padding: 8px;
+        margin: 8px auto;
+        width: 99vw;
+        max-width: 99vw;
+        box-sizing: border-box;
+        display: block;
+      }
+      textarea {
+        width: 97vw;
+        max-width: 99vw;
+        font-size: 13px;
+        padding: 6px;
+        margin-left: auto;
+        margin-right: auto;
+        display: block;
+        box-sizing: border-box;
+      }
+      button {
+        font-size: 15px;
+        padding: 10px 10px;
+        width: 97vw;
+        max-width: 99vw;
+        margin-left: auto;
+        margin-right: auto;
+        display: block;
+        box-sizing: border-box;
+      }
+      h1 {
+        font-size: 8vw;
+      }
+      h2 {
+        font-size: 6vw;
+      }
+      .character, .sunny, .dance, .rainbow, .box, .hidden, .flex-puzzle, .flex-parade, .grid-garden, .grid-party {
+        font-size: 6vw;
+        padding: 8px;
+        max-width: 99vw;
+        margin-left: auto;
+        margin-right: auto;
+        box-sizing: border-box;
+      }
+      .flex-puzzle div, .flex-parade div, .grid-garden div, .grid-party div {
+        font-size: 8vw;
+        padding: 6px;
+        box-sizing: border-box;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>🎨 CSS Playground for Kids (Age 7+)</h1>
+  <button onclick="toggleTheme()">🌓 Toggle Light/Dark Mode</button>
+  <button onclick="restartAll()" style="background:#ff9800;color:white;font-size:17px;margin-bottom:12px;">🔄 Restart All</button>
+
+  <!-- Section 1: Style Froggy -->
+  <div class="section">
+    <div style="color:#388e3c;font-size:15px;margin-bottom:6px;"><strong>Note:</strong> You can change the color, size, and shape of Froggy!</div>
+    <div style="color:#1976d2;font-size:14px;margin-bottom:6px;">Tip: Try making Froggy purple or super big!</div>
+    <h2>🐸 Style Froggy</h2>
+    <p>Challenge: Make Froggy green with big round head!</p>
+    <div class="character froggy">Hi! I'm Froggy</div>
+    <textarea id="froggyCSS">
+.froggy {
+  background-color: green;
+  color: white;
+  font-size: 30px;
+  border-radius: 50px;
+}
+    </textarea>
+      <button class="run-btn" onclick="updateStyle('froggyCSS')">Try It!</button>
+  </div>
+
+  <!-- Section 2: Background Gradients -->
+  <div class="section">
+    <div style="color:#388e3c;font-size:15px;margin-bottom:6px;"><strong>Note:</strong> Try using different colors for your gradient!</div>
+    <div style="color:#1976d2;font-size:14px;margin-bottom:6px;">Tip: You can use three or more colors for a rainbow effect!</div>
+    <h2>🌞 Make It Sunny!</h2>
+    <p>Challenge: Add a yellow-orange gradient.</p>
+    <div class="sunny">🌤️ Bright Day</div>
+    <textarea id="sunnyCSS">
+.sunny {
+  background: linear-gradient(yellow, orange);
+  color: black;
+  font-size: 24px;
+}
+    </textarea>
+      <button class="run-btn" onclick="updateStyle('sunnyCSS')">Try It!</button>
+  </div>
+
+  <!-- Section 3: Rainbow Hover Button -->
+  <div class="section">
+    <div style="color:#388e3c;font-size:15px;margin-bottom:6px;"><strong>Note:</strong> Hover means move your mouse over the button!</div>
+    <div style="color:#1976d2;font-size:14px;margin-bottom:6px;">Tip: Try changing the border or text color too!</div>
+    <h2>🌈 Rainbow Button</h2>
+    <p>Challenge: Make the button change to gold when hovered!</p>
+    <button class="rainbow" onmouseover="playSound()">Click Me</button>
+    <textarea id="rainbowCSS">
+.rainbow {
+  background-color: violet;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 20px;
+}
+.rainbow:hover {
+  background-color: gold;
+  color: black;
+}
+    </textarea>
+      <button class="run-btn" onclick="updateStyle('rainbowCSS')">Try It!</button>
+  </div>
+
+  <!-- Section 4: Dancing Froggy -->
+  <div class="section">
+    <div style="color:#388e3c;font-size:15px;margin-bottom:6px;"><strong>Note:</strong> Animation makes things move up and down!</div>
+    <div style="color:#1976d2;font-size:14px;margin-bottom:6px;">Tip: Try making Froggy spin or bounce faster!</div>
+    <h2>💃 Dancing Froggy</h2>
+    <p>Challenge: Make Froggy jump!</p>
+    <div class="dance">🐸</div>
+    <textarea id="danceCSS">
+@keyframes jump {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-30px); }
+  100% { transform: translateY(0); }
+}
+.dance {
+  animation: jump 1s infinite;
+  font-size: 50px;
+}
+    </textarea>
+      <button class="run-btn" onclick="updateStyle('danceCSS')">Try It!</button>
+  </div>
+
+  <!-- Section 5: Shape Playground -->
+  <div class="section">
+    <div style="color:#388e3c;font-size:15px;margin-bottom:6px;"><strong>Note:</strong> Border radius makes corners round or makes a circle!</div>
+    <div style="color:#1976d2;font-size:14px;margin-bottom:6px;">Tip: Try making an oval or a pill shape by changing width and height!</div>
+    <h2>🔵 Shape Playground</h2>
+    <p>Challenge: Make this box a perfect circle!</p>
+    <div class="box">🔷</div>
+    <textarea id="boxCSS">
+.box {
+  width: 100px;
+  height: 100px;
+  background-color: lightcoral;
+  border-radius: 50%;
+}
+    </textarea>
+      <button class="run-btn" onclick="updateStyle('boxCSS')">Try It!</button>
+  </div>
+
+  <!-- Section 6: Hide and Show -->
+  <div class="section">
+    <div style="color:#388e3c;font-size:15px;margin-bottom:6px;"><strong>Note:</strong> <code>display: none;</code> hides things on the page.</div>
+    <div style="color:#1976d2;font-size:14px;margin-bottom:6px;">Tip: Try <code>display: block;</code> to show it again!</div>
+    <h2>🙈 Hide and Show</h2>
+    <p>Challenge: Hide the text using `display: none;`</p>
+    <div class="hidden">🕵️ Secret Message</div>
+    <textarea id="hiddenCSS">
+.hidden {
+  display: none;
+}
+    </textarea>
+      <button class="run-btn" onclick="updateStyle('hiddenCSS')">Try It!</button>
+  </div>
+
+  <!-- Section 7: Flexbox Puzzle -->
+  <div class="section">
+    <div style="color:#388e3c;font-size:15px;margin-bottom:6px;"><strong>Note:</strong> Flexbox helps you line up things in a row or column!</div>
+    <div style="color:#1976d2;font-size:14px;margin-bottom:6px;">Tip: Try <code>flex-direction: column;</code> to stack the blocks!</div>
+    <h2>🧩 Flexbox Puzzle</h2>
+    <p>Challenge: Space out the blocks with <code>gap</code>!</p>
+    <div class="flex-puzzle">
+      <div>🐶</div>
+      <div>🐱</div>
+      <div>🐰</div>
+    </div>
+    <textarea id="flexCSS">
+.flex-puzzle {
+  display: flex;
+  justify-content: space-around;
+  gap: 20px;
+}
+    </textarea>
+      <button class="run-btn" onclick="updateStyle('flexCSS')">Try It!</button>
+  </div>
+
+  <!-- Section 8: Grid Garden -->
+  <div class="section">
+    <div style="color:#388e3c;font-size:15px;margin-bottom:6px;"><strong>Note:</strong> Grid lets you make rows and columns easily!</div>
+    <div style="color:#1976d2;font-size:14px;margin-bottom:6px;">Tip: Try <code>grid-template-rows</code> or <code>place-items: center</code> for more fun!</div>
+    <h2>🌱 Grid Garden</h2>
+    <p>Challenge: Make a 2x2 garden with <code>display: grid</code> and <code>grid-gap</code>!</p>
+    <div class="grid-garden">
+      <div>🥕</div>
+      <div>🍅</div>
+      <div>🥦</div>
+      <div>🌽</div>
+    </div>
+    <textarea id="gridCSS">
+.grid-garden {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 15px;
+  justify-items: center;
+  align-items: center;
+  margin: 0 auto;
+  max-width: 250px;
+}
+.grid-garden div {
+  background: #e0ffe0;
+  border: 2px solid #4caf50;
+  border-radius: 12px;
+  font-size: 32px;
+  padding: 20px;
+}
+    </textarea>
+      <button class="run-btn" onclick="updateStyle('gridCSS')">Try It!</button>
+  </div>
+
+  <!-- Section 9: Flexbox Animals Parade -->
+  <div class="section">
+    <div style="color:#388e3c;font-size:15px;margin-bottom:6px;"><strong>Note:</strong> Flexbox can help you make a parade of animals!</div>
+    <div style="color:#1976d2;font-size:14px;margin-bottom:6px;">Tip: Try <code>justify-content: space-between;</code> or <code>align-items: flex-end;</code>!</div>
+    <h2>🐾 Flexbox Animals Parade</h2>
+    <p>Challenge: Make the animals line up at the bottom and spread out!</p>
+    <div class="flex-parade">
+      <div>🦁</div>
+      <div>🐯</div>
+      <div>🐵</div>
+      <div>🦊</div>
+      <div>🐻</div>
+    </div>
+    <textarea id="paradeCSS">
+.flex-parade {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 10px;
+  min-height: 80px;
+  margin: 0 auto;
+  max-width: 400px;
+}
+.flex-parade div {
+  font-size: 40px;
+  background: #fffbe7;
+  border: 2px solid #ff9800;
+  border-radius: 15px;
+  padding: 10px 15px;
+  box-shadow: 1px 2px 6px #ccc;
+}
+    </textarea>
+      <button class="run-btn" onclick="updateStyle('paradeCSS')">Try It!</button>
+  </div>
+
+  <!-- Section 10: Super Grid Party -->
+  <div class="section">
+    <div style="color:#388e3c;font-size:15px;margin-bottom:6px;"><strong>Note:</strong> Grids can make big parties with lots of friends!</div>
+    <div style="color:#1976d2;font-size:14px;margin-bottom:6px;">Tip: Try <code>grid-template-columns: repeat(3, 1fr);</code> for 3 columns!</div>
+    <h2>🎉 Super Grid Party</h2>
+    <p>Challenge: Make a 3x2 party grid with 6 emojis!</p>
+    <div class="grid-party">
+      <div>🎈</div>
+      <div>🎂</div>
+      <div>🎁</div>
+      <div>🎉</div>
+      <div>🧁</div>
+      <div>🍦</div>
+    </div>
+    <textarea id="partyCSS">
+.grid-party {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 12px;
+  justify-items: center;
+  align-items: center;
+  margin: 0 auto;
+  max-width: 350px;
+}
+.grid-party div {
+  background: #ffe0f7;
+  border: 2px solid #e040fb;
+  border-radius: 14px;
+  font-size: 32px;
+  padding: 18px;
+  box-shadow: 1px 2px 6px #ccc;
+}
+    </textarea>
+      <button class="run-btn" onclick="updateStyle('partyCSS')">Try It!</button>
+  </div>
+
+  <!-- Audio for hover -->
+  <audio id="hoverSound" src="https://cdn.pixabay.com/audio/2022/08/04/audio_2f25ba5da6.mp3"></audio>
+<div><h3>Created by Teacher Theo</h3></div>
+  <script>
+    function updateStyle(id) {
+      const cssCode = document.getElementById(id).value;
+      document.getElementById("liveStyle").innerHTML += cssCode;
+    }
+
+    function toggleTheme() {
+      const root = document.documentElement;
+      const isDark = root.style.getPropertyValue('--bg') === '#121212';
+      root.style.setProperty('--bg', isDark ? '#f0f8ff' : '#121212');
+      root.style.setProperty('--text', isDark ? '#000' : '#fff');
+      root.style.setProperty('--card', isDark ? '#fff8dc' : '#333');
+    }
+
+    function playSound() {
+      document.getElementById("hoverSound").play();
+    }
+
+    function restartAll() {
+      // Reset all textareas to their original values
+      document.getElementById('froggyCSS').value = `.froggy {\n  background-color: green;\n  color: white;\n  font-size: 30px;\n  border-radius: 50px;\n}`;
+      document.getElementById('sunnyCSS').value = `.sunny {\n  background: linear-gradient(yellow, orange);\n  color: black;\n  font-size: 24px;\n}`;
+      document.getElementById('rainbowCSS').value = `.rainbow {\n  background-color: violet;\n  color: white;\n  padding: 10px 20px;\n  border-radius: 20px;\n}\n.rainbow:hover {\n  background-color: gold;\n  color: black;\n}`;
+      document.getElementById('danceCSS').value = `@keyframes jump {\n  0% { transform: translateY(0); }\n  50% { transform: translateY(-30px); }\n  100% { transform: translateY(0); }\n}\n.dance {\n  animation: jump 1s infinite;\n  font-size: 50px;\n}`;
+      document.getElementById('boxCSS').value = `.box {\n  width: 100px;\n  height: 100px;\n  background-color: lightcoral;\n  border-radius: 50%;\n}`;
+      document.getElementById('hiddenCSS').value = `.hidden {\n  display: none;\n}`;
+      document.getElementById('flexCSS').value = `.flex-puzzle {\n  display: flex;\n  justify-content: space-around;\n  gap: 20px;\n}`;
+      document.getElementById('gridCSS').value = `.grid-garden {\n  display: grid;\n  grid-template-columns: 1fr 1fr;\n  grid-gap: 15px;\n  justify-items: center;\n  align-items: center;\n  margin: 0 auto;\n  max-width: 250px;\n}\n.grid-garden div {\n  background: #e0ffe0;\n  border: 2px solid #4caf50;\n  border-radius: 12px;\n  font-size: 32px;\n  padding: 20px;\n}`;
+      document.getElementById('paradeCSS').value = `.flex-parade {\n  display: flex;\n  justify-content: space-between;\n  align-items: flex-end;\n  gap: 10px;\n  min-height: 80px;\n  margin: 0 auto;\n  max-width: 400px;\n}\n.flex-parade div {\n  font-size: 40px;\n  background: #fffbe7;\n  border: 2px solid #ff9800;\n  border-radius: 15px;\n  padding: 10px 15px;\n  box-shadow: 1px 2px 6px #ccc;\n}`;
+      document.getElementById('partyCSS').value = `.grid-party {\n  display: grid;\n  grid-template-columns: repeat(3, 1fr);\n  grid-gap: 12px;\n  justify-items: center;\n  align-items: center;\n  margin: 0 auto;\n  max-width: 350px;\n}\n.grid-party div {\n  background: #ffe0f7;\n  border: 2px solid #e040fb;\n  border-radius: 14px;\n  font-size: 32px;\n  padding: 18px;\n  box-shadow: 1px 2px 6px #ccc;\n}`;
+      // Reapply all default styles
+      updateStyle('froggyCSS');
+      updateStyle('sunnyCSS');
+      updateStyle('rainbowCSS');
+      updateStyle('danceCSS');
+      updateStyle('boxCSS');
+      updateStyle('hiddenCSS');
+      updateStyle('flexCSS');
+      updateStyle('gridCSS');
+      updateStyle('paradeCSS');
+      updateStyle('partyCSS');
+    }
+  </script>
+</body>
+</html>
