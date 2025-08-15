@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>JavaScript Learning Dashboard</title>
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css">
+  <style>
+    :root {
+      --primary: #31415a;
+      --accent: #4fd1c5;
+      --bg: #f4f6fa;
+      --sidebar-bg: #222e3a;
+      --sidebar-active: #31415a;
+      --text: #222;
+      --card-bg: #fff;
+      --output-bg: #f1f3f7;
+    }
+    body.dark {
+      --primary: #4fd1c5;
+      --accent: #31415a;
+      --bg: #181c24;
+      --sidebar-bg: #1a2233;
+      --sidebar-active: #31415a;
+      --text: #f4f6fa;
+      --card-bg: #232b3a;
+      --output-bg: #232b3a;
+    }
+    body {
+      margin: 0;
+      font-family: 'Roboto', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      transition: background 0.3s, color 0.3s;
+    }
+    .dashboard {
+      display: flex;
+      min-height: 100vh;
+    }
+    .sidebar {
+      background: var(--sidebar-bg);
+      color: #fff;
+      width: 270px;
+      padding: 32px 0 0 0;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      box-shadow: 2px 0 8px #0002;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      height: 100vh;
+      max-height: 100vh;
+      overflow-y: auto;
+    }
+    .sidebar h2 {
+      margin: 0 0 24px 32px;
+      font-size: 1.3rem;
+      letter-spacing: 1px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .sidebar .search {
+      margin: 0 24px 16px 24px;
+      padding: 8px 12px;
+      border-radius: 4px;
+      border: none;
+      font-size: 1rem;
+      width: calc(100% - 48px);
+      background: #fff2;
+      color: #fff;
+      outline: none;
+    }
+    .sidebar .search::placeholder {
+      color: #fff8;
+    }
+    .sidebar button {
+      background: none;
+      border: none;
+      color: inherit;
+      text-align: left;
+      padding: 12px 32px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background 0.2s;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      position: relative;
+    }
+    .sidebar button.active, .sidebar button:hover {
+      background: var(--sidebar-active);
+    }
+    .sidebar .checkmark {
+      color: var(--accent);
+      font-size: 1.2em;
+      margin-left: auto;
+    }
+    .sidebar .progress {
+      margin: 24px 32px 0 32px;
+      font-size: 0.95rem;
+      color: #fff9;
+    }
+    .sidebar .dark-toggle {
+      position: absolute;
+      top: 24px;
+      right: 24px;
+      background: var(--accent);
+      color: var(--sidebar-bg);
+      border: none;
+      border-radius: 50%;
+      width: 36px;
+      height: 36px;
+      font-size: 1.2em;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .content {
+      flex: 1;
+      padding: 40px 5vw;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      background: var(--bg);
+      transition: background 0.3s;
+    }
+    .lesson-title {
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .lesson-title .done {
+      color: var(--accent);
+      font-size: 1.3em;
+    }
+    .lesson-desc {
+      font-size: 1.1rem;
+      margin-bottom: 16px;
+    }
+    .example {
+      background: var(--card-bg);
+      border-radius: 8px;
+      box-shadow: 0 2px 8px #0001;
+      padding: 20px;
+      margin-bottom: 16px;
+    }
+    .example pre {
+      background: #0002;
+      border-radius: 4px;
+      padding: 12px;
+      overflow-x: auto;
+      font-size: 1em;
+    }
+    .editor-area {
+      background: var(--card-bg);
+      border-radius: 8px;
+      box-shadow: 0 2px 8px #0001;
+      padding: 20px;
+      margin-bottom: 16px;
+    }
+    .editor-label {
+      font-weight: 700;
+      margin-bottom: 8px;
+      display: block;
+    }
+    .editor-wrap {
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      background: #f9fafb;
+      min-height: 120px;
+      margin-bottom: 8px;
+      resize: vertical;
+      overflow: hidden;
+      position: relative;
+    }
+    .editor-wrap:focus-within {
+      border-color: var(--accent);
+    }
+    .editor {
+      width: 100%;
+      min-height: 120px;
+      font-family: 'Fira Mono', 'Consolas', monospace;
+      font-size: 1rem;
+      border: none;
+      outline: none;
+      background: transparent;
+      color: var(--text);
+      padding: 10px;
+      resize: none;
+      transition: color 0.3s;
+    }
+    .editor.hljs {
+      background: transparent;
+      color: inherit;
+    }
+    .editor-actions {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 8px;
+    }
+    .editor-actions button {
+      background: var(--primary);
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      padding: 8px 18px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .editor-actions button:hover {
+      background: var(--accent);
+      color: var(--sidebar-bg);
+    }
+    .output {
+      background: var(--output-bg);
+      border-radius: 4px;
+      min-height: 32px;
+      padding: 10px;
+      font-family: 'Fira Mono', 'Consolas', monospace;
+      color: var(--text);
+      margin-top: 4px;
+      white-space: pre-wrap;
+      transition: background 0.3s, color 0.3s;
+    }
+    .notes {
+      margin-top: 16px;
+      background: #fff4;
+      border-radius: 4px;
+      padding: 12px;
+      font-size: 1em;
+      color: var(--text);
+      min-height: 40px;
+      width: 100%;
+      border: 1px solid #ccc;
+      outline: none;
+      resize: vertical;
+    }
+    .notes:focus {
+      border-color: var(--accent);
+    }
+    @media (max-width: 800px) {
+      .dashboard { flex-direction: column; }
+      .sidebar { width: 100%; flex-direction: row; overflow-x: auto; }
+      .sidebar button { flex: 1; padding: 12px 8px; font-size: 0.95rem; }
+      .content { padding: 24px 2vw; }
+    }
+  </style>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+</head>
+<body>
+  <header style="background: var(--primary); color: #fff; padding: 24px 0 12px 0; text-align: center; box-shadow: 0 2px 8px #0002;">
+    <h1 style="font-size:2.2rem; margin:0; display:flex; align-items:center; justify-content:center; gap:12px;">
+      <span style="font-size:2.2rem;">✨</span> Binbin's JavaScript Adventure! ✨
+    </h1>
+    <div style="margin: 10px auto 0 auto; max-width: 600px; font-size: 1.15rem; color: #fff; background: rgba(0,0,0,0.08); border-radius: 8px; padding: 12px 18px;">
+      Welcome, future web developers!<br>
+      <span style="font-size:0.98em; color:#fff9;">Developed by Teacher Theo</span>
+    </div>
+    <div id="lesson-progress-bar" style="margin:18px auto 0 auto; max-width:420px; height:18px; background:#fff2; border-radius:9px; overflow:hidden;">
+      <div id="lesson-progress-fill" style="height:100%; width:0; background:linear-gradient(90deg, var(--accent), #4fd1c5 80%); transition:width 0.5s;"></div>
+    </div>
+    <div style="margin-top:8px; font-size:1.1rem; color:#fff9;" id="lesson-progress-label"></div>
+  </header>
+  <div class="dashboard">
+    <nav class="sidebar" id="sidebar">
+      <h2>JS Dashboard</h2>
+      <button class="dark-toggle" id="darkToggle" title="Toggle dark mode">🌙</button>
+      <input class="search" id="search" type="text" placeholder="Search lessons..." />
+      <!-- Navigation buttons will be injected here -->
+      <div class="progress" id="progress"></div>
+    </nav>
+    <main class="content" id="content">
+      <!-- Lesson content will be injected here -->
+    </main>
+  </div>
+  <script>
+    // Curriculum data
+    const lessons = [
+      {
+        title: "Introduction to Web Development & JavaScript",
+        desc: "Understand how webpages work, basic structure of HTML/CSS/JS.",
+        example: `<!-- HTML Example -->\n<!DOCTYPE html>\n<html>\n  <head>\n    <title>My First Webpage</title>\n  </head>\n  <body>\n    <h1>Hello, world!</h1>\n  </body>\n</html>`
+      },
+      {
+        title: "Writing Your First JavaScript Code",
+        desc: "Add JavaScript to a webpage, use alert() and console.log().",
+        example: `// JavaScript Example\nalert('Welcome to JavaScript!');\nconsole.log('Hello from the console!');`
+      },
+      {
+        title: "Variables and Data Types",
+        desc: "Learn let, const, numbers, strings, booleans.",
+        example: `let name = 'Alice';\nconst age = 25;\nlet isStudent = true;\nconsole.log(name, age, isStudent);`
+      },
+      {
+        title: "Basic Operators and Expressions",
+        desc: "Arithmetic, string concatenation, simple calculations.",
+        example: `let sum = 5 + 3;\nlet message = 'Hello' + ' ' + 'World!';\nconsole.log(sum);\nconsole.log(message);`
+      },
+      {
+        title: "Functions: Organizing Code",
+        desc: "Define and call functions, understand reusable code blocks.",
+        example: `function greet(name) {\n  return 'Hello, ' + name + '!';\n}\nconsole.log(greet('Bob'));`
+      },
+      {
+        title: "Manipulating Webpage Elements (DOM Basics)",
+        desc: "Select and change HTML elements using JavaScript.",
+        example: `// HTML: <p id=\"demo\">Original</p>\n// JS:\ndocument.getElementById('demo').textContent = 'Changed!';`
+      },
+      {
+        title: "User Interaction with Events",
+        desc: "Use onclick and event listeners to respond to clicks.",
+        example: `// HTML: <button id=\"btn\">Click me</button>\n// JS:\ndocument.getElementById('btn').onclick = function() {\n  alert('Button clicked!');\n}`
+      },
+      {
+        title: "Conditional Logic with if Statements",
+        desc: "Make decisions and change content based on conditions.",
+        example: `let score = 80;\nif (score >= 60) {\n  console.log('Passed!');\n} else {\n  console.log('Try again!');\n}`
+      },
+      {
+        title: "Loops: Automating Repetitive Tasks",
+        desc: "Use for loops to work with multiple elements or repeat actions.",
+        example: `for (let i = 1; i <= 5; i++) {\n  console.log('Number:', i);\n}`
+      },
+      {
+        title: "Arrays: Working with Lists of Data",
+        desc: "Store and display multiple items, loop through arrays.",
+        example: `let fruits = ['apple', 'banana', 'cherry'];\nfor (let fruit of fruits) {\n  console.log(fruit);\n}`
+      },
+      {
+        title: "Working with User Input",
+        desc: "Read input from text boxes and respond dynamically.",
+        example: `// HTML: <input id=\"name\">\n// JS:\nlet name = document.getElementById('name').value;\nconsole.log('Hello, ' + name);`
+      },
+      {
+        title: "Mini Project: Calculator",
+        desc: "Build a simple calculator that adds and subtracts numbers.",
+        example: `function add(a, b) { return a + b; }\nfunction subtract(a, b) { return a - b; }\nconsole.log(add(5, 3));\nconsole.log(subtract(5, 3));`
+      },
+      {
+        title: "Mini Project: Quiz Game",
+        desc: "Create a multiple-choice quiz with instant feedback.",
+        example: `let answer = prompt('2 + 2 = ?');\nif (answer == '4') {\n  alert('Correct!');\n} else {\n  alert('Try again!');\n}`
+      },
+      {
+        title: "Introduction to Objects",
+        desc: "Understand objects to group related data and properties.",
+        example: `let person = { name: 'Alice', age: 25 };\nconsole.log(person.name);`
+      },
+      {
+        title: "Debugging and Problem Solving",
+        desc: "Learn to find and fix errors using browser tools.",
+        example: `let x = 10;\nconsole.log(x); // Use browser dev tools to debug`
+      },
+      {
+        title: "Final Project: To-Do List Application",
+        desc: "Build a fully functional to-do list with add/remove features.",
+        example: `let todos = ['Buy milk', 'Read book'];\ntodos.push('Walk dog');\nconsole.log(todos);`
+      },
+      // --- More Challenges ---
+      {
+        title: "Challenge: Dynamic Message Changer",
+        desc: "Write a function that changes the text of an HTML element with a specific id.",
+        example: `// HTML: <p id=\"message\">Hello World!</p>\nfunction changeText() {\n  document.getElementById('message').innerText = 'JavaScript is Awesome!';\n}`
+      },
+      {
+        title: "Challenge: Simple Calculator (Addition)",
+        desc: "Prompt the user for two numbers, add them, and show the result with alert().",
+        example: `function addNumbers() {\n  let num1 = parseInt(prompt('Enter first number:'))\n  let num2 = parseInt(prompt('Enter second number:'))\n  let sum = num1 + num2;\n  alert('The sum is: ' + sum);\n  console.log('Sum: ' + sum);\n}`
+      },
+      {
+        title: "Challenge: Background Color Changer",
+        desc: "Write functions to change the background color of the page.",
+        example: `function makeBlue() {\n  document.body.style.backgroundColor = 'lightblue';\n}\nfunction makeGreen() {\n  document.body.style.backgroundColor = 'lightgreen';\n}`
+      },
+      {
+        title: "Challenge: Secret Message Decoder",
+        desc: "Prompt the user for a secret code. If correct, show a secret message; otherwise, show 'Access Denied!'.",
+        example: `function decodeMessage() {\n  let userCode = prompt('Enter the secret code:');\n  if (userCode === 'MAGIC') {\n    console.log('You found the treasure!');\n  } else {\n    console.log('Access Denied!');\n  }\n}`
+      },
+      {
+        title: "Challenge: Number Guessing Game",
+        desc: "Build a game where the user guesses a random number between 1 and 10.",
+        example: `function numberGuessingGame() {\n  let secretNumber = Math.floor(Math.random() * 10) + 1;\n  let guess = parseInt(prompt(\"I'm thinking of a number between 1 and 10. Can you guess it?\"));\n  if (guess === secretNumber) {\n    alert('Amazing! You got it right! The number was ' + secretNumber);\n  } else if (guess < secretNumber) {\n    alert('Too low! The number was ' + secretNumber + '.');\n  } else if (guess > secretNumber) {\n    alert('Too high! The number was ' + secretNumber + '.');\n  } else {\n    alert('That\'s not a valid number! The number was ' + secretNumber);\n  }\n  console.log('Secret number was: ' + secretNumber + ', Player guessed: ' + guess);\n}`
+      },
+      {
+        title: "Challenge: Compliment Machine",
+        desc: "Write a function that gives a random compliment from an array.",
+        example: `function giveCompliment() {\n  const compliments = [\n    \"You're a coding superstar!\",\n    \"You have a great imagination!\",\n    \"Your problem-solving skills are awesome!\",\n    \"You make learning fun!\",\n    \"You're a JavaScript wizard!\"\n  ];\n  const randomIndex = Math.floor(Math.random() * compliments.length);\n  alert(compliments[randomIndex]);\n}`
+      },
+      // --- Extra Challenges ---
+      {
+        title: "Challenge: Palindrome Checker",
+        desc: "Write a function that checks if a word is a palindrome (reads the same forwards and backwards).",
+        example: `function isPalindrome(word) {\n  let reversed = word.split('').reverse().join('');\n  return word === reversed;\n}\nconsole.log(isPalindrome('racecar')); // true\nconsole.log(isPalindrome('hello')); // false`
+      },
+      {
+        title: "Challenge: FizzBuzz",
+        desc: "Print numbers 1 to 20. For multiples of 3 print 'Fizz', for 5 print 'Buzz', for both print 'FizzBuzz'.",
+        example: `for (let i = 1; i <= 20; i++) {\n  if (i % 3 === 0 && i % 5 === 0) {\n    console.log('FizzBuzz');\n  } else if (i % 3 === 0) {\n    console.log('Fizz');\n  } else if (i % 5 === 0) {\n    console.log('Buzz');\n  } else {\n    console.log(i);\n  }\n}`
+      },
+      {
+        title: "Challenge: Find the Largest Number",
+        desc: "Write a function that takes an array of numbers and returns the largest one.",
+        example: `function findLargest(arr) {\n  let max = arr[0];\n  for (let i = 1; i < arr.length; i++) {\n    if (arr[i] > max) max = arr[i];\n  }\n  return max;\n}\nconsole.log(findLargest([3, 7, 2, 9, 5])); // 9`
+      },
+      {
+        title: "Challenge: Countdown Timer",
+        desc: "Write a function that counts down from a given number to 0, printing each number.",
+        example: `function countdown(n) {\n  for (let i = n; i >= 0; i--) {\n    console.log(i);\n  }\n}\ncountdown(5); // 5 4 3 2 1 0`
+      },
+      {
+        title: "Challenge: Random Password Generator",
+        desc: "Write a function that generates a random 8-character password using letters and numbers.",
+        example: `function generatePassword() {\n  const chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';\n  let password = '';\n  for (let i = 0; i < 8; i++) {\n    let idx = Math.floor(Math.random() * chars.length);\n    password += chars[idx];\n  }\n  return password;\n}\nconsole.log(generatePassword());`
+      }
+    ];
+
+    // Progress/completion tracking
+    let completed = JSON.parse(localStorage.getItem('js_dashboard_completed') || '[]');
+    let notes = JSON.parse(localStorage.getItem('js_dashboard_notes') || '{}');
+
+    // Sidebar navigation with search and progress
+    const sidebar = document.getElementById('sidebar');
+    const progressDiv = document.getElementById('progress');
+    const searchInput = document.getElementById('search');
+    let filtered = lessons.map((_, i) => i);
+
+    // Lesson icons and pro tips
+    const lessonIcons = [
+      '📖','💬','🔢','➕','🧩','🖱️','🎯','🔀','🔁','📚','📝','🧮','❓','🗂️','🐞','✅'
+    ];
+    const lessonTips = [
+      'Did you know? HTML, CSS, and JS are the core of every website!',
+      'Pro Tip: Use alert() for quick popups, but console.log() for debugging.',
+      'Fun Fact: let and const are block-scoped!',
+      'Pro Tip: + can add numbers or join strings.',
+      'Did you know? Functions help you avoid repeating code.',
+      'Pro Tip: document.getElementById is your DOM best friend.',
+      'Fun Fact: Event listeners can be added to almost any element!',
+      'Pro Tip: if/else lets your code make decisions.',
+      'Did you know? Loops save you from writing repetitive code.',
+      'Pro Tip: Arrays can hold any type of data.',
+      'Fun Fact: You can get user input with prompt() or input fields.',
+      'Pro Tip: Try using parseFloat() for decimals in your calculator.',
+      'Did you know? prompt() always returns a string.',
+      'Pro Tip: Objects group related data together.',
+      'Fun Fact: All browsers have built-in dev tools for debugging.',
+      'Pro Tip: To-Do lists are a classic beginner project!'
+    ];
+
+    function renderSidebar() {
+      // Remove old buttons
+      Array.from(sidebar.querySelectorAll('button.lesson-link')).forEach(b => b.remove());
+      filtered.forEach(i => {
+        const lesson = lessons[i];
+        const btn = document.createElement('button');
+        btn.className = 'lesson-link';
+        btn.innerHTML = `<span style="font-size:1.2em;">${lessonIcons[i % lessonIcons.length]}</span> ${i + 1}. ${lesson.title}`;
+        btn.onclick = () => showLesson(i);
+        if (i === current) btn.classList.add('active');
+        if (completed.includes(i)) {
+          const check = document.createElement('span');
+          check.className = 'checkmark';
+          check.textContent = '✔';
+          btn.appendChild(check);
+        }
+        sidebar.insertBefore(btn, progressDiv);
+      });
+      // Progress
+      progressDiv.textContent = `Progress: ${completed.length} / ${lessons.length} completed`;
+      // Progress bar
+      const percent = lessons.length ? Math.round((completed.length / lessons.length) * 100) : 0;
+      document.getElementById('lesson-progress-fill').style.width = percent + '%';
+      document.getElementById('lesson-progress-label').textContent = `Lesson Progress: ${percent}%`;
+    }
+
+    // Search lessons
+    searchInput.addEventListener('input', () => {
+      const q = searchInput.value.toLowerCase();
+      filtered = lessons.map((l, i) => ({ l, i })).filter(({ l }) => l.title.toLowerCase().includes(q) || l.desc.toLowerCase().includes(q)).map(({ i }) => i);
+      if (!filtered.includes(current)) current = filtered[0] || 0;
+      renderSidebar();
+      showLesson(current);
+    });
+
+    // Dark mode toggle
+    const darkToggle = document.getElementById('darkToggle');
+    darkToggle.onclick = () => {
+      document.body.classList.toggle('dark');
+      localStorage.setItem('js_dashboard_dark', document.body.classList.contains('dark'));
+    };
+    if (localStorage.getItem('js_dashboard_dark') === 'true') document.body.classList.add('dark');
+
+    // Show lesson content
+    let current = 0;
+    function showLesson(idx) {
+      current = idx;
+      renderSidebar();
+      const lesson = lessons[idx];
+      const content = document.getElementById('content');
+      let extra = '';
+      if (lesson.title && lesson.title.toLowerCase().includes('background color changer')) {
+        extra = `<div style=\"display:flex;gap:18px;margin-bottom:18px;align-items:center;justify-content:flex-start;\">
+          <button title='Light Blue' style=\"background:linear-gradient(135deg,#4fd1c5 60%,#81d4fa 100%);border:none;border-radius:50%;width:44px;height:44px;cursor:pointer;box-shadow:0 2px 8px #0002;display:flex;align-items:center;justify-content:center;font-size:1.7em;transition:transform 0.15s;\" onclick=\"document.body.style.backgroundColor='lightblue'\">🌊</button>
+          <button title='Light Green' style=\"background:linear-gradient(135deg,#a8e063 60%,#56ab2f 100%);border:none;border-radius:50%;width:44px;height:44px;cursor:pointer;box-shadow:0 2px 8px #0002;display:flex;align-items:center;justify-content:center;font-size:1.7em;transition:transform 0.15s;\" onclick=\"document.body.style.backgroundColor='lightgreen'\">🌿</button>
+          <button title='Pink' style=\"background:linear-gradient(135deg,#ffb6c1 60%,#ff6f91 100%);border:none;border-radius:50%;width:44px;height:44px;cursor:pointer;box-shadow:0 2px 8px #0002;display:flex;align-items:center;justify-content:center;font-size:1.7em;transition:transform 0.15s;\" onclick=\"document.body.style.backgroundColor='pink'\">🌸</button>
+          <button title='Reset' style=\"background:linear-gradient(135deg,#fff 60%,#b2ebf2 100%);border:none;border-radius:50%;width:44px;height:44px;cursor:pointer;box-shadow:0 2px 8px #0002;display:flex;align-items:center;justify-content:center;font-size:1.7em;transition:transform 0.15s;\" onclick=\"document.body.style.backgroundColor=''\">🔄</button>
+          <span style='font-size:1.08em;color:var(--primary);margin-left:12px;'>Quick background color change!</span>
+        </div>`;
+      }
+      // Calculator challenge: add interactive calculator UI
+      if (lesson.title && lesson.title.toLowerCase().includes('calculator') && !lesson.title.toLowerCase().includes('quiz')) {
+        extra = `<form id='calcForm' style="display:flex;gap:12px;align-items:center;margin-bottom:18px;flex-wrap:wrap;">
+          <input type='number' id='calcNum1' placeholder='First number' style='width:110px;padding:7px 10px;border-radius:6px;border:1.5px solid #b2ebf2;font-size:1em;'>
+          <select id='calcOp' style='padding:7px 10px;border-radius:6px;border:1.5px solid #b2ebf2;font-size:1em;'>
+            <option value='add'>+</option>
+            <option value='subtract'>-</option>
+            <option value='multiply'>×</option>
+            <option value='divide'>÷</option>
+          </select>
+          <input type='number' id='calcNum2' placeholder='Second number' style='width:110px;padding:7px 10px;border-radius:6px;border:1.5px solid #b2ebf2;font-size:1em;'>
+          <button type='submit' style='background:linear-gradient(90deg,var(--primary) 60%,var(--accent) 100%);color:#fff;border:none;border-radius:6px;padding:8px 18px;font-size:1em;cursor:pointer;font-weight:600;box-shadow:0 2px 8px #0001;'>Calculate</button>
+          <span id='calcResult' style='margin-left:18px;font-weight:600;color:var(--primary);font-size:1.08em;'></span>
+        </form>` + (extra || '');
+      }
+      content.innerHTML = `
+        <div class="lesson-title" style="margin-bottom: 0.5em;">
+          <span style="font-size:1.5em;">${lessonIcons[idx % lessonIcons.length]}</span> ${lesson.title} ${completed.includes(idx) ? '<span class=\"done\">✔</span>' : ''}
+        </div>
+        <div class="lesson-desc">${lesson.desc}</div>
+        <div class="example" style="border-left:6px solid var(--accent);">
+          <strong>Example:</strong>
+          <pre><code class="language-javascript">${hljs.highlight(lesson.example, {language: 'javascript'}).value}</code></pre>
+        </div>
+        ${extra}
+        <div class="pro-tip">
+          <span style="font-size:1.2em;">💡</span> ${lessonTips[idx % lessonTips.length]}
+        </div>
+        <div class="editor-area">
+          <label class="editor-label">Try it yourself:</label>
+          <div class="editor-wrap"><textarea class="editor" id="editor">${lesson.example.replace(/<.*?>/g, '').replace(/\\n/g, '\n')}</textarea></div>
+          <div class="editor-actions">
+            <button onclick="runCode()">Run</button>
+            <button onclick="clearEditor()">Clear</button>
+            <button onclick="markComplete()">${completed.includes(idx) ? 'Mark Incomplete' : 'Mark Complete'}</button>
+          </div>
+          <div class="output" id="output"></div>
+        </div>
+        <textarea class="notes" id="notes" placeholder="Your notes for this lesson...">${notes[idx] || ''}</textarea>
+      `;
+      // Scroll content to top when topic is selected
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      // Calculator logic
+      if (lesson.title && lesson.title.toLowerCase().includes('calculator') && !lesson.title.toLowerCase().includes('quiz')) {
+        setTimeout(() => {
+          const form = document.getElementById('calcForm');
+          const num1 = document.getElementById('calcNum1');
+          const num2 = document.getElementById('calcNum2');
+          const op = document.getElementById('calcOp');
+          const result = document.getElementById('calcResult');
+          form.onsubmit = function(e) {
+            e.preventDefault();
+            let n1 = parseFloat(num1.value);
+            let n2 = parseFloat(num2.value);
+            let res = '';
+            if (isNaN(n1) || isNaN(n2)) {
+              res = 'Please enter valid numbers!';
+            } else {
+              switch(op.value) {
+                case 'add': res = n1 + n2; break;
+                case 'subtract': res = n1 - n2; break;
+                case 'multiply': res = n1 * n2; break;
+                case 'divide': res = n2 === 0 ? 'Cannot divide by zero!' : (n1 / n2); break;
+              }
+            }
+            result.textContent = 'Result: ' + res;
+          };
+        }, 0);
+      }
+      // Syntax highlight for code editor
+      setTimeout(() => {
+        const editor = document.getElementById('editor');
+        editor.addEventListener('input', () => {
+          // Optionally, live highlight could be added here
+        });
+        // Notes save
+        const notesBox = document.getElementById('notes');
+        notesBox.addEventListener('input', () => {
+          notes[idx] = notesBox.value;
+          localStorage.setItem('js_dashboard_notes', JSON.stringify(notes));
+        });
+      }, 0);
+    }
+
+    // Initial load
+    renderSidebar();
+    showLesson(current);
+
+    // Run code from editor
+    window.runCode = function() {
+      const code = document.getElementById('editor').value;
+      const outputDiv = document.getElementById('output');
+      outputDiv.textContent = '';
+      let result = '';
+      const log = (...args) => {
+        result += args.join(' ') + '\n';
+      };
+      try {
+        // eslint-disable-next-line no-new-func
+        new Function('console', code)({ log });
+        outputDiv.textContent = result.trim() || '[No output]';
+      } catch (e) {
+        outputDiv.textContent = 'Error: ' + e.message;
+      }
+    };
+
+    // Clear editor and output
+    window.clearEditor = function() {
+      const idx = current;
+      document.getElementById('editor').value = lessons[idx].example.replace(/<.*?>/g, '').replace(/\\n/g, '\n');
+      document.getElementById('output').textContent = '';
+    };
+
+    // Mark lesson complete/incomplete
+    window.markComplete = function() {
+      const idx = current;
+      if (completed.includes(idx)) {
+        completed = completed.filter(i => i !== idx);
+      } else {
+        completed.push(idx);
+      }
+      localStorage.setItem('js_dashboard_completed', JSON.stringify(completed));
+      renderSidebar();
+      showLesson(idx);
+    };
+  </script>
+</body>
+</html>
